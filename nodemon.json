@@ -1,0 +1,6 @@
+{
+    "env":{
+        "JWT_Token":"secret",
+        "JWT_refreshToken":"secret"
+    }
+}
