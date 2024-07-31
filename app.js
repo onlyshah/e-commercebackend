@@ -17,42 +17,11 @@ var wishlistRoutes = require('./api/routes/Wishlist');
 var carouselRoutes = require('./api/routes/carousel')
 var emailRoutes = require('./api/routes/email')
 var cardcarouselRoutes = require('./api/routes/Cardcarousel')
+const connectDB = require('./db'); // Adjust the path to your db.js file
 var mongoose = require('mongoose');
-mongoose.set('strictQuery', true)
 // app.use(express.static((__dirname+'/views')));
 mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
-
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const urL = "mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/";
-
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(urL, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   }
-// });
-// mongoose.connect(urL, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// })
-
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
-
-
+//connectDB(); // Connect to MongoDB
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
