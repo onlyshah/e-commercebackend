@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
+const uri = 'mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/nodeDemo';
 
-const uri = 'mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/';
 
 mongoose.set('strictQuery', false); // Optional, depending on your Mongoose configuration
 
