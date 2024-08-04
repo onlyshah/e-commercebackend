@@ -9,17 +9,17 @@ const mongoose = require('mongoose');
 const connectDB = require('../../db'); // Adjust the path to your db.js file
 
 // Import routes
-const productRoutes = require('./api/routes/Product');
-const orderRoutes = require('./api/routes/order');
-const userRoutes = require('./api/routes/user');
-const categoryRoutes = require('./api/routes/Category');
-const subcategoryRoutes = require('./api/routes/Subcategory');
-const addtocartRoutes = require('./api/routes/addtoCart');
-const comanApi = require('./api/routes/ComanApi');
-const wishlistRoutes = require('./api/routes/Wishlist');
-const carouselRoutes = require('./api/routes/carousel');
-const emailRoutes = require('./api/routes/email');
-const cardcarouselRoutes = require('./api/routes/Cardcarousel');
+const productRoutes = require('../../api/routes/Product');
+const orderRoutes = require('../../api/routes/order');
+const userRoutes = require('../../api/routes/user');
+const categoryRoutes = require('../../api/routes/Category');
+const subcategoryRoutes = require('../../api/routes/Subcategory');
+const addtocartRoutes = require('../../api/routes/addtoCart');
+const comanApi = require('../../api/routes/ComanApi');
+const wishlistRoutes = require('../../api/routes/Wishlist');
+const carouselRoutes = require('../../api/routes/carousel');
+const emailRoutes = require('../../api/routes/email');
+const cardcarouselRoutes = require('../../api/routes/Cardcarousel');
 
 const app = express();
 

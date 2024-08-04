@@ -45,6 +45,7 @@
         |-- SubCategory.js
         |-- user.js
         |-- Wishlist.js
+|-- api.js
 |-- app.js
 |-- config
     |-- config.json
@@ -54,8 +55,8 @@
 |-- index.js
 |-- models
     |-- index.js
+|-- netlify.toml
 |-- nodemon.json
-|-- package-lock.json
 |-- package.json
 |-- uploads
     |-- banner
