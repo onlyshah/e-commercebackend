@@ -1,11 +1,4 @@
-|-- .devcontainer
-    |-- devcontainer.json
-    |-- docker-compose.yml
-    |-- Dockerfile
-|-- .dockerignore
-|-- .env
-|-- .github
-    |-- dependabot.yml
+|--e-commerce
 |-- .gitignore
 |-- api
     |-- controller
