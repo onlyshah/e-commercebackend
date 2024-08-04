@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "build": "babel src -d dist"
+   "build": "babel api -d dist"
+
+
   },
   "author": "nikunjShah",
   "license": "ISC",
@@ -32,6 +34,8 @@
     "stripe": "^16.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.25.2",
     "sequelize-cli": "^6.6.2"
   }
 }
