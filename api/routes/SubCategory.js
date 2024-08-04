@@ -1,14 +1,8 @@
 const express  =  require('express');
 const router =  express.Router();
-const mongoose = require('mongoose');
-const Order = require('../models/order');
-const Product = require('../models/Product');
-const Category = require('../models/Category');
-const comanapiController = require('../controller/ComanApi');
 const checkAuth = require('../middleware/auth-check');
 const multer  = require('multer');
 const subcategoryController = require('../controller/SubCategory');
-const categoryController = require('../controller/Category');
 const path = require("path");
 const storage  = multer.diskStorage({
     destination: function (req, file, cb) {
