@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "netlify-lambda build netlify/functions"
   },
   "author": "nikunjShah",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "mongoose": "^6.3.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "netlify-lambda": "^2.0.16",
     "nodemailer": "^6.9.13",
     "nodemon": "^2.0.20",
     "razorpay": "^2.9.4",
