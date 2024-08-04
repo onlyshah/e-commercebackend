@@ -1,7 +1,10 @@
 [build]
   command = "npm install && npm run build"
-  publish = "public"
-  functions = "netlify/functions"
+  publish = "public"  # Ensure this is the directory to publish your static site
+
+[functions]
+  directory = "netlify/functions-build"  # Set this to a directory for built functions
+
 
 [[redirects]]
   from = "/api/*"
