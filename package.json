@@ -4,6 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+   "build": "netlify-lambda build netlify/functions",
+    "start": "netlify-lambda serve netlify/functions",
+    "postbuild": "cp -r netlify/functions netlify/functions-build"
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "netlify-lambda build netlify/functions",
     "start": "netlify-lambda serve netlify/functions",
