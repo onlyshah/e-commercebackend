@@ -1,11 +1,6 @@
 [build]
-  command = "npm run build"
-  publish = "public"  # Ensure this is correct
-  functions = "netlify/functions"  # Ensure this is the correct path to your functions
+  command = "npm install && npm run build"
+  publish = "dist"
 
-
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api"
-  status = 200
+[functions]
+  directory = "netlify/functions"
