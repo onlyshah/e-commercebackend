@@ -6,5 +6,5 @@ services:
     buildCommand: 'npm install'
     startCommand: 'node index.js'
     envVars:
-      - key: uri
+      - key: MONGO_URI
         value:mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/nodeDemo
