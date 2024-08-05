@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "ngrok": "ngrok http 3000",
-    "build": "webpack --mode production"
+    "ngrok": "ngrok http 3000"
   },
   "author": "nikunjShah",
   "license": "ISC",
@@ -20,11 +19,13 @@
     "db-migrate": "^0.11.14",
     "db-migrate-mongodb": "^1.5.0",
     "express": "^4.19.2",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "mock-aws-s3": "^4.0.2",
     "mongodb-migrations": "^0.8.5",
     "mongoose": "^6.3.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "nock": "^13.5.4",
     "nodemailer": "^6.9.13",
     "nodemon": "^2.0.20",
     "razorpay": "^2.9.4",
@@ -32,13 +33,7 @@
     "stripe": "^16.2.0"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.6.2",
-    "webpack": "^5.64.0",
-    "webpack-cli": "^4.9.1",
-    "nodemon": "^2.0.15",
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "babel-loader": "^8.2.2"
-    
+   
+    "sequelize-cli": "^6.6.2"
   }
 }
