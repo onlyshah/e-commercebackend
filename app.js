@@ -17,6 +17,7 @@ var wishlistRoutes = require('./api/routes/Wishlist');
 var carouselRoutes = require('./api/routes/carousel')
 var emailRoutes = require('./api/routes/email')
 var cardcarouselRoutes = require('./api/routes/Cardcarousel')
+require('dotenv').config();
 const connectDB = require('./db'); // Adjust the path to your db.js file
 var mongoose = require('mongoose');
 // app.use(express.static((__dirname+'/views')));

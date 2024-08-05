@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const uri = 'mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/nodeDemo';
 
-
+const MONGO_URI = 'mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/nodeDemo';
+// Check for MONGO_URI
 mongoose.set('strictQuery', false); // Optional, depending on your Mongoose configuration
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(uri, {
+    mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
