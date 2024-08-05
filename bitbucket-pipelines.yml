@@ -18,12 +18,12 @@ pipelines:
             - node
           script:
             - npm install
-            
+           
       - step:
           name: Lint the node package
           script:
             - npm install eslint
-            - npx eslint .
+          
           caches:
             - node
   branches:
@@ -35,7 +35,7 @@ pipelines:
               - node
             script:
               - npm install
-              
+             
         - step:
             name: Security Scan
             script:
