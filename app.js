@@ -17,7 +17,6 @@ var wishlistRoutes = require('./api/routes/Wishlist');
 var carouselRoutes = require('./api/routes/carousel')
 var emailRoutes = require('./api/routes/email')
 var cardcarouselRoutes = require('./api/routes/Cardcarousel')
-require('dotenv').config();
 const connectDB = require('./db'); // Adjust the path to your db.js file
 var mongoose = require('mongoose');
 // app.use(express.static((__dirname+'/views')));
@@ -53,22 +52,4 @@ process.on('unhandledRejection', (reason, promise) => {
    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
    // Application specific logging, throwing an error, or other logic here
  });
-// app.use((req,res,next)=>{
-//     var error = new Error('Not Found');
-//     error.status=404;
-//     next(error);
-// })
-// app.use((error,req,res,next)=>{
-//     res.status(error.status|| 500);
-//     res.json({
-//         error:{
-//             message:error.message
-//         }
-//     })
-// })
-// // app.use((req,res,next)=>{
-// //     res.status(200).json({
-// //        message:'It Works !'
-// //     });
-// // })
 module.exports = app;
