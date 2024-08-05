@@ -1,5 +1,3 @@
-const Order = require('../models/order');
-const Product = require('../models/Product');
 const SubCategory = require('../models/SubCategory');
 const mongoose = require("mongoose");
 exports.createSubCategory=(req, res , next)=>{
