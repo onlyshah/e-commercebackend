@@ -18,7 +18,7 @@ var carouselRoutes = require('./api/routes/carousel')
 var emailRoutes = require('./api/routes/email')
 var cardcarouselRoutes = require('./api/routes/Cardcarousel')
 const connectDB = require('./db'); // Adjust the path to your db.js file
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 // app.use(express.static((__dirname+'/views')));
 //mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
 connectDB(); // Connect to MongoDB
@@ -29,11 +29,13 @@ app.use('/uploads', express.static('uploads'));
 app.use((req, res, next) => {
    res.header('Access-Control-Allow-Origin', '*');
    res.header('Access-Control-Allow-Header', '*');
+   
 
    if (req.method === 'OPTIONS') {
       res.header('Access-Control-Allow-Method', 'PUT,POST,PATCH,GET,DELETE');
       return res.status(200).json({})
    }
+   res.header('Content-Type', 'application/json');
    next();
 });
 app.use('/', productRoutes);

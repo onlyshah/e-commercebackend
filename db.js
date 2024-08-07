@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-//const MONGO_URI = 'mongodb+srv://shahnikunjsbit:nikunj%400014@cluster0.mema0ex.mongodb.net/nodeDemo';
-// Check for MONGO_URI
 mongoose.set('strictQuery', false); // Optional, depending on your Mongoose configuration
 console.log("Url",process.env.MONGO_URI)
 const connectDB = async () => {
@@ -9,6 +7,7 @@ const connectDB = async () => {
     mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000,
     });
     console.log('Connected to MongoDBCluster');
   } catch (err) {

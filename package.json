@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "ngrok": "ngrok http 3000"
+    "ngrok": "ngrok"
   },
   "author": "nikunjShah",
   "license": "ISC",
@@ -20,12 +20,15 @@
     "db-migrate-mongodb": "^1.5.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.0",
     "jsonwebtoken": "^9.0.2",
     "mock-aws-s3": "^4.0.2",
     "mongodb-migrations": "^0.8.5",
     "mongoose": "^6.3.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "ngrok": "^5.0.0-beta.2",
     "nock": "^13.5.4",
     "nodemailer": "^6.9.13",
     "nodemon": "^2.0.20",
@@ -34,6 +37,10 @@
     "stripe": "^16.2.0"
   },
   "devDependencies": {
+    "firebase-functions-test": "^3.1.0",
     "sequelize-cli": "^6.6.2"
+  },
+  "engines": {
+    "node": "22"
   }
 }
