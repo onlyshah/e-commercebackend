@@ -3,7 +3,7 @@ const app = require('./app');
 const ngrok = require('@ngrok/ngrok');
 
 //  const port = process.env.PORT || 3002;
-const PORT = process.env.PORT || 10000;
+const port = process.env.PORT || 10000;
 
 const server = http.createServer(app);
 
