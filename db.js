@@ -4,10 +4,11 @@ mongoose.set('strictQuery', false); // Optional, depending on your Mongoose conf
 console.log("Url",process.env.MONGO_URI)
 const connectDB = async () => {
   try {
-    mongoose.connect(process.env.MONGO_URI, {
+   await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
     });
     console.log('Connected to MongoDBCluster');
   } catch (err) {
