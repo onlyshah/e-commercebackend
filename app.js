@@ -36,6 +36,7 @@ app.use((req, res, next) => {
       return res.status(200).json({})
    }
    res.header('Content-Type', 'application/json');
+   req.setTimeout(60000); 
    next();
 });
 app.use('/', productRoutes);
