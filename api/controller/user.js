@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User  = require('../models/user');
 const jwt = require('jsonwebtoken');
-const { use } = require('../routes/email');
-const { hash } = require('crypto');
+require('dotenv').config();
+
 exports.singUp= (req,res, next)=>{
     console.log(req.body)
     User.find({email: req.body.email})
@@ -45,57 +45,62 @@ exports.singUp= (req,res, next)=>{
         }
     })
 }
-exports.login =async (req, res, next) => {
-  console.log('User',req.body)
-    User.find({email: req.body.email})
+exports.login = async (req, res, next) => {
+  console.log('User', req.body);
+  User.find({ email: req.body.email })
     .exec()
-    .then( user=>{
+    .then(user => {
       console.log('User found:', user);
-        if(user.length <1){
-            return res.status(404).json({
-                message:'Mail not Found'
+      if (user.length < 1) {
+        return res.status(404).json({
+          message: 'Mail not found'
+        });
+      } else {
+        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+          console.log('result', result);
+          if (err) {
+            return res.status(401).json({
+              message: 'Auth fails'
             });
+          }
+          if (result) {
+            console.log('result', result);
+            const token = jwt.sign(
+              {
+                email: user[0].email,
+                userId: user[0]._id
+              },
+              process.env.JWT_Token || 'yourFallbackSecretKey',
+              {
+                expiresIn: '1h'
+              }
+            );
 
-        }
-        else{
-            bcrypt.compare(req.body.password, user[0].password, (err, result)=>{
-              console.log('result',result)
-                if(err){
-                     return res.status(401).json({
-                             message: 'Auth falis'
-                     });
-                }
-                if(result){
-                  console.log('result',result)
-                     const token = jwt.sign({
-                         email : user[0].email,
-                         userId : user[0]._id
-                     }, process.env.JWT_Token)
-
-                    return res.status(200).json({
-                        message: 'Auth Sucessfully',
-                        token : token ,
-                        userId : user[0]._id,
-                        email: user[0].email,
-                        firstName:user[0].firstName,
-                        lastName:user[0].lastName,
-                        Address:user[0].Address,
-                        mobileNo:user[0].mobileNo
-
-
-                                                
-                });
-                }
-
-            })
-        }
+            return res.status(200).json({
+              message: 'Auth Successfully',
+              token: token,
+              userId: user[0]._id,
+              email: user[0].email,
+              firstName: user[0].firstName,
+              lastName: user[0].lastName,
+              Address: user[0].Address,
+              mobileNo: user[0].mobileNo
+            });
+          } else {
+            return res.status(401).json({
+              message: 'Auth fails'
+            });
+          }
+        });
+      }
     })
-    .catch( err=>{
+    .catch(err => {
       res.status(500).json({
-        error:err
-    })
-    })
-  }
+        error: err
+      });
+    });
+};
+
   exports.getUser =async (req,res,next)=>{
     try {
         let _id = req.params.userId;
