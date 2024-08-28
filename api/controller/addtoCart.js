@@ -76,7 +76,7 @@ exports.addtoCart = async (req, res) => {
   
       if (!docs || docs.length === 0) {
         return res.status(404).json({
-          message: 'No cart found for this user'
+          message: 'Your Cart is Empty'
         });
       }
       const products = docs[0].products;

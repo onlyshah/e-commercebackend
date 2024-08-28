@@ -60,7 +60,7 @@ exports.login = async (req, res, next) => {
           console.log('result', result);
           if (err) {
             return res.status(401).json({
-              message: 'Auth fails'
+              message: 'Password Wrong'
             });
           }
           if (result) {
