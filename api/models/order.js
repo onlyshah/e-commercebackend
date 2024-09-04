@@ -29,7 +29,7 @@ const orderSchema = mongoose.Schema({
             default: false
           },
           received: {
-            type: String,
+            type: Boolean,
             required: false
           },
           message:{type:String, require:true}
