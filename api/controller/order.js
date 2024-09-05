@@ -197,41 +197,44 @@ exports.deleteOrder = (req,res, next)=>{
 }
 // Update order status
 exports.updateStatus = async (req, res) => {
-const { orderId } = req.params;
-// console.log(req.body);
+  const { orderId } = req.params;
 
-try {
-  const order = await Order.findById(orderId);
-  if (!order) {
-    return res.status(404).json({ message: 'Order not found' });
-  }
-
-  const newStatus = {
-    // userId: req.body.userId,
-    // products: req.body.products, // Assuming this is an array of productIds, otherwise adjust accordingly
-    cancel: req.body.cancel,
-    return: req.body.return,
-    received: req.body.received,
-    message: req.body.message // Adjust if `this.msg` was intended to be something else
-  };
-  
-  console.log('newStatus', newStatus);
-  order.status.push(newStatus);
-  
-  await order.save(); // Save the order with the new status
-
-  res.status(200).json({
-    message: 'Order status updated successfully',
-    order,
-    request: {
-      type: 'PATCH',
-      url: `http://localhost:3000/order/update-status/${orderId}`
+  try {
+    // Find the order by its ID
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
     }
-  });
-} catch (error) {
-  console.log(error);
-  res.status(500).json({
-    error
-  });
-}
-}
+
+    // Update the status fields only (not pushing new statuses)
+    if (typeof req.body.cancel !== 'undefined') {
+      order.status.cancel = req.body.cancel;
+    }
+    if (typeof req.body.return !== 'undefined') {
+      order.status.return = req.body.return;
+    }
+    if (typeof req.body.received !== 'undefined') {
+      order.status.received = req.body.received;
+    }
+    if (typeof req.body.message !== 'undefined') {
+      order.status.message = req.body.message;
+    }
+
+    // Save the updated order
+    await order.save();
+
+    res.status(200).json({
+      message: 'Order status updated successfully',
+      order,
+      request: {
+        type: 'PATCH',
+        url: `http://localhost:3000/order/update-status/${orderId}`
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error
+    });
+  }
+};
