@@ -100,7 +100,7 @@ exports.forgetpasswordsendemail = async (req, res) => {
   //Save the user object
   await user.save()
   // Create a reset link
-   const resetLink = `http://localhost:4200/reset-password/${token}`;
+   const resetLink = `https://onlyshah.github.io/shoppingbuzz/reset-password/${token}`;
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
