@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const User = require('../models/user')
 const billemail = require('../models/Email'); // Update the path as necessary
 const crypto = require('crypto');
-const Buffer =require('buffer');
 const Razorpay = require('razorpay');
 const razorpay = new Razorpay({
   key_id: 'rzp_test_MiheZxloav4xYh',
@@ -93,8 +92,8 @@ exports.forgetpasswordsendemail = async (req, res) => {
 
   // Generate a reset token
   const token = crypto.randomBytes(32).toString('hex');
-   email = crypto.randomBytes(32).toString('hex')
-   const emailBase64 = Buffer.from(email, 'hex').toString('base64');
+ // email = crypto.randomBytes(32).toString('hex')
+   email = Buffer.from(email).toString('base64'); 
   
   // Set token and expiration on user object
   user.resetPasswordToken = token;
@@ -103,7 +102,7 @@ exports.forgetpasswordsendemail = async (req, res) => {
   //Save the user object
   await user.save()
   // Create a reset link
-   const resetLink = `https://onlyshah.github.io/shoppingbuzz/reset-password/${token}+${emailBase64}`;
+   const resetLink = `https://onlyshah.github.io/shoppingbuzz/reset-password/${token}+${email}`;
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
