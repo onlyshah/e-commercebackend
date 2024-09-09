@@ -1,6 +1,5 @@
 const http = require('http');
 const app = require('./app');
-const ngrok = require('@ngrok/ngrok');
 
 //  const port = process.env.PORT || 3002;
 const port = process.env.PORT || 10000;
