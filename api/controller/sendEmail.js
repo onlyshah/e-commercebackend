@@ -92,6 +92,7 @@ exports.forgetpasswordsendemail = async (req, res) => {
 
   // Generate a reset token
   const token = crypto.randomBytes(32).toString('hex');
+  email = crypto.randomBytes(32).toString('hex')
   
   // Set token and expiration on user object
   user.resetPasswordToken = token;
@@ -100,7 +101,7 @@ exports.forgetpasswordsendemail = async (req, res) => {
   //Save the user object
   await user.save()
   // Create a reset link
-   const resetLink = `https://onlyshah.github.io/shoppingbuzz/reset-password/${token}`;
+   const resetLink = `https://onlyshah.github.io/shoppingbuzz/reset-password/${token}+${email}`;
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
