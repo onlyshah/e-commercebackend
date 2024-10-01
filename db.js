@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 mongoose.set('strictQuery', false); // Optional, depending on your Mongoose configuration
-console.log("Url",process.env.MONGO_URI)
+//console.log("Url",process.env.MONGO_URI)
 const connectDB = async (retries = 5) => {
   while (retries) {
     try {

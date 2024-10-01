@@ -1,24 +1,24 @@
-var express = require('express');
-var app = express();
+let  express = require('express');
+let  app = express();
 app.use(express.json());
-var cors = require('cors');
+let  cors = require('cors');
 app.use(cors());
 app.use(express.json());
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var productRoutes = require('./api/routes/Product');
-var orderRoutes = require('./api/routes/order');
-var userRoutes = require('./api/routes/user');
-var categoryRoutes = require('./api/routes/Category');
-var SubcategoryRoutes = require('./api/routes/SubCategory');
-var addtocartRoutes = require('./api/routes/addtoCart');
-var comanApi = require('./api/routes/ComanApi');
-var wishlistRoutes = require('./api/routes/Wishlist');
-var carouselRoutes = require('./api/routes/carousel')
-var emailRoutes = require('./api/routes/email')
-var cardcarouselRoutes = require('./api/routes/Cardcarousel')
+let  morgan = require('morgan');
+let  bodyParser = require('body-parser');
+let  productRoutes = require('./api/routes/Product');
+let  orderRoutes = require('./api/routes/order');
+let  userRoutes = require('./api/routes/user');
+let  categoryRoutes = require('./api/routes/Category');
+let  SubcategoryRoutes = require('./api/routes/SubCategory');
+let  addtocartRoutes = require('./api/routes/addtoCart');
+let  comanApi = require('./api/routes/ComanApi');
+let  wishlistRoutes = require('./api/routes/Wishlist');
+let  carouselRoutes = require('./api/routes/carousel')
+let  emailRoutes = require('./api/routes/email')
+let  cardcarouselRoutes = require('./api/routes/Cardcarousel')
 const connectDB = require('./db'); // Adjust the path to your db.js file
-//var mongoose = require('mongoose');
+//let  mongoose = require('mongoose');
 // app.use(express.static((__dirname+'/views')));
 //mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
 connectDB(); // Connect to MongoDB

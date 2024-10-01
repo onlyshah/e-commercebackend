@@ -16,7 +16,7 @@ server.listen(port, () => {
   //   try {
   //     const url = await ngrok.connect({
   //       addr: port,
-  //       authtoken: process.env.NGROK_AUTHTOKEN // Ensure this environment variable is set
+  //       authtoken: process.env.NGROK_AUTHTOKEN // Ensure this environment let iable is set
   //     });
   //     console.log(`ngrok tunnel established at: ${url}`);
   //   } catch (error) {
