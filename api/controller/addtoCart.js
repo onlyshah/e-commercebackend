@@ -56,7 +56,7 @@ exports.addtoCart = async (req, res) => {
          products: req.body.products,
       });
 
-      return res.status(201).send(newCart);
+      return res.status(201).json({newCart});
     }
     
   }
