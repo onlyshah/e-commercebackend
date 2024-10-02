@@ -18,10 +18,10 @@ let  carouselRoutes = require('./api/routes/carousel')
 let  emailRoutes = require('./api/routes/email')
 let  cardcarouselRoutes = require('./api/routes/Cardcarousel')
 const connectDB = require('./db'); // Adjust the path to your db.js file
-//let  mongoose = require('mongoose');
+let  mongoose = require('mongoose');
 // app.use(express.static((__dirname+'/views')));
-//mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
-connectDB(); // Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
+//connectDB(); // Connect to MongoDB
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

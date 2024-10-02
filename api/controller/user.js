@@ -251,7 +251,7 @@ exports.add_address = async (req, res, next) => {
  }
 
  exports.logout = async (req, res, next) => {
-  const userId = req.userData?.userId; // Ensure userData exists before accessing userId
+  const userId = req.body.userId; // Ensure userData exists before accessing userId
   console.log('logoutuser',userId)
   if (!userId) {
     return res.status(400).json({
