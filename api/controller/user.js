@@ -114,7 +114,7 @@ exports.login = async (req, res, next) => {
     });
 };
 
-  exports.getUser =async (req,res,next)=>{
+exports.getUser =async (req,res,next)=>{
     try {
         let _id = req.params.userId;
         console.log('userid',_id)
@@ -171,7 +171,7 @@ exports.deleteaccount = (req,res,next)=>{
   //     });
   //   }
   // }
-  exports.add_address = async (req, res, next) => {
+exports.add_address = async (req, res, next) => {
     console.log(req.body);
   
     const userId = mongoose.Types.ObjectId(req.params.userId);
@@ -249,19 +249,19 @@ exports.deleteaccount = (req,res,next)=>{
    }
    
  }
- exports.verifyToken = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];  // Assuming 'Bearer token' format
-  if (!token) {
-    return res.status(403).json({ message: 'No token provided' });
+
+exports.logout = async (req, res, next) => {
+  const userId = req.userData.userId; // Assuming userId is available in req.userData
+
+  try {
+    await User.findByIdAndUpdate(userId, { token: null });  // Set the token to null on logout
+    res.status(200).json({
+      message: 'Logout successful'
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Logout failed',
+      error: error
+    });
   }
-
-  jwt.verify(token, process.env.JWT_Token || 'yourFallbackSecretKey', (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
-    // Attach decoded user info to the request object
-    req.userId = decoded.userId;
-    next();
-  });
 };

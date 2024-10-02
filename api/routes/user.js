@@ -17,4 +17,5 @@ CastError: Cast to ObjectId failed for value "addCategory" (type string) at path
 router.get("/getuser/:userId", userController.getUser);
 router.post("/resetpassword", userController.resetpassword);
 
+router.post("/logout", userController.logout);
 module.exports = router;
