@@ -76,16 +76,29 @@ exports.login = async (req, res, next) => {
               }
             );
 
-            return res.status(200).json({
-              message: 'Auth Successfully',
-              token: token,
-              userId: user[0]._id,
-              email: user[0].email,
-              firstName: user[0].firstName,
-              lastName: user[0].lastName,
-              Address: user[0].Address,
-              mobileNo: user[0].mobileNo
-            });
+            // return res.status(200).json({
+            //   message: 'Auth Successfully',
+            //   token: token,
+            //   userId: user[0]._id,
+            //   email: user[0].email,
+            //   firstName: user[0].firstName,
+            //   lastName: user[0].lastName,
+            //   Address: user[0].Address,
+            //   mobileNo: user[0].mobileNo
+            // });
+              User.findByIdAndUpdate(user[0]._id, { token: token }, { new: true })
+              .then(updatedUser => {
+                return res.status(200).json({
+                  message: 'Auth Successfully',
+                  token: token,
+                  userId: updatedUser._id,
+                  email: updatedUser.email,
+                  firstName: updatedUser.firstName,
+                  lastName: updatedUser.lastName,
+                  Address: updatedUser.Address,
+                  mobileNo: updatedUser.mobileNo
+                });
+              })
           } else {
             return res.status(401).json({
               message: 'Auth fails'
@@ -236,3 +249,19 @@ exports.deleteaccount = (req,res,next)=>{
    }
    
  }
+ exports.verifyToken = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];  // Assuming 'Bearer token' format
+  if (!token) {
+    return res.status(403).json({ message: 'No token provided' });
+  }
+
+  jwt.verify(token, process.env.JWT_Token || 'yourFallbackSecretKey', (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Attach decoded user info to the request object
+    req.userId = decoded.userId;
+    next();
+  });
+};
