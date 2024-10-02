@@ -250,18 +250,28 @@ exports.add_address = async (req, res, next) => {
    
  }
 
-exports.logout = async (req, res, next) => {
-  const userId = req.userData.userId; // Assuming userId is available in req.userData
-
+ exports.logout = async (req, res, next) => {
+  const userId = req.userData?.userId; // Ensure userData exists before accessing userId
+  if (!userId) {
+    return res.status(400).json({
+      message: 'User ID not found',
+    });
+  }
+  
+  console.log('User ID:', userId);
+  
   try {
-    await User.findByIdAndUpdate(userId, { token: null });  // Set the token to null on logout
+    await User.findByIdAndUpdate(userId, { token: null });  // Set token to null
     res.status(200).json({
-      message: 'Logout successful'
+      message: 'Logout successful',
     });
   } catch (error) {
+    console.error('Logout error:', error);
     res.status(500).json({
       message: 'Logout failed',
-      error: error
+      error: error.message || error,  // More detailed error message
     });
   }
 };
+
+
