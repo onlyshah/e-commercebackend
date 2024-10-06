@@ -76,29 +76,29 @@ exports.login = async (req, res, next) => {
               }
             );
 
-            // return res.status(200).json({
-            //   message: 'Auth Successfully',
-            //   token: token,
-            //   userId: user[0]._id,
-            //   email: user[0].email,
-            //   firstName: user[0].firstName,
-            //   lastName: user[0].lastName,
-            //   Address: user[0].Address,
-            //   mobileNo: user[0].mobileNo
-            // });
-              User.findByIdAndUpdate(user[0]._id, { token: token }, { new: true })
-              .then(updatedUser => {
-                return res.status(200).json({
-                  message: 'Auth Successfully',
-                  token: token,
-                  userId: updatedUser[0]._id,
-                  email: updatedUser[0].email,
-                  firstName: updatedUser[0].firstName,
-                  lastName: updatedUser[0].lastName,
-                  Address: updatedUser[0].Address,
-                  mobileNo: updatedUser[0].mobileNo
-                });
-              })
+            return res.status(200).json({
+              message: 'Auth Successfully',
+              token: token,
+              userId: user[0]._id,
+              email: user[0].email,
+              firstName: user[0].firstName,
+              lastName: user[0].lastName,
+              Address: user[0].Address,
+              mobileNo: user[0].mobileNo
+            });
+              //User.findByIdAndUpdate(user[0]._id, { token: token }, { new: true })
+              // .then(updatedUser => {
+              //   return res.status(200).json({
+              //     message: 'Auth Successfully',
+              //     token: token,
+              //     userId: updatedUser._id,
+              //     email: updatedUser.email,
+              //     firstName: updatedUser.firstName,
+              //     lastName: updatedUser.lastName,
+              //     Address: updatedUser.Address,
+              //     mobileNo: updatedUser.mobileNo
+              //   });
+              // })
           } else {
             return res.status(401).json({
               message: 'Auth fails'
