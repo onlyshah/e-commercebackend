@@ -181,5 +181,20 @@ exports.deleteCartByUserId = async (req, res, next) => {
     next(error);
   }
 };
+exports.checkcart = async (req, res) => {
+  const { userId, productId } = req.body;
 
+  try {
+      // Check if the user has the product in their wishlist
+      const card = await Cart.findOne({ userId, "List.productId": productId });
+
+      if (C) {
+          return res.status(200).json({ success: true, message: 'Product is in wishlist' });
+      } else {
+          return res.status(200).json({ success: false, message: 'Product is not in wishlist' });
+      }
+  } catch (error) {
+      return res.status(500).json({ success: false, message: 'Server error', error });
+  }
+}
 

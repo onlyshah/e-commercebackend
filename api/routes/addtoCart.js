@@ -9,4 +9,6 @@ router.put('/updatecart', Cart.updatecartquantity)
 router.delete('/deletecartitem/:userId/:productId', Cart.deletecartproduct)
 router.delete('/deleteByuId/:userId', Cart.deleteCartByUserId);
 
+router.post('/checkcart', Cart.checkcart)
+
 module.exports = router;

@@ -115,4 +115,19 @@ exports.deletewishlist = (req, res, next) => {
       res.status(500).json({ error: err });
   });
 };
+exports.checkWishlist = async (req, res) => {
+  const { userId, productId } = req.body;
 
+  try {
+      // Check if the user has the product in their wishlist
+      const wishlist = await WishList.findOne({ userId, "List.productId": productId });
+
+      if (wishlist) {
+          return res.status(200).json({ success: true, message: 'Product is in wishlist' });
+      } else {
+          return res.status(200).json({ success: false, message: 'Product is not in wishlist' });
+      }
+  } catch (error) {
+      return res.status(500).json({ success: false, message: 'Server error', error });
+  }
+};
