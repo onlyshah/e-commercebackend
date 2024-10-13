@@ -125,9 +125,9 @@ exports.checkWishlist = async (req, res) => {
       const wishlist = await WishList.findOne({ userId, "List.productId": productId });
       console.log('checkwishlist*',wishlist)
       if (wishlist) {
-          return res.status(200).json({ success: true, message: 'Product is in wishlist' });
+          return res.status(200).json({ success: true, message: 'Product is in wishlist' ,wishlist});
       } else {
-          return res.status(200).json({ success: false, message: 'Product is not in wishlist' });
+          return res.status(200).json({ success: false, message: 'Product is not in wishlist', wishlist });
       }
   } catch (error) {
       return res.status(500).json({ success: false, message: 'Server error', error });
