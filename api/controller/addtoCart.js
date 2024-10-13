@@ -186,12 +186,12 @@ exports.checkcart = async (req, res) => {
 
   try {
       // Check if the user has the product in their wishlist
-      const card = await Cart.findOne({ userId, "List.productId": productId });
+      const cart = await Cart.findOne({ userId, "products.productId": productId });
 
-      if (C) {
-          return res.status(200).json({ success: true, message: 'Product is in wishlist' });
+      if (cart) {
+          return res.status(200).json({ success: true, message: 'Product is in Cart' },cart);
       } else {
-          return res.status(200).json({ success: false, message: 'Product is not in wishlist' });
+          return res.status(200).json({ success: false, message: 'Product is not in Cart' },cart);
       }
   } catch (error) {
       return res.status(500).json({ success: false, message: 'Server error', error });
