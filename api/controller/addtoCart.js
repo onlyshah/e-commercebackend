@@ -182,8 +182,8 @@ exports.deleteCartByUserId = async (req, res, next) => {
   }
 };
 exports.checkcart = async (req, res) => {
-  const { userId, productId } = req.body;
-
+  const productId = req.body.productId;
+  const userId  = req.body.userId
   try {
       // Check if the user has the product in their wishlist
       const cart = await Cart.findOne({ userId, "products.productId": productId });
