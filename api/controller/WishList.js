@@ -118,12 +118,12 @@ exports.deletewishlist = (req, res, next) => {
 exports.checkWishlist = async (req, res) => {
   const productId = req.body.productId;
   const userId  = req.body.userId
-  console.log('checkwishlist',productId,userId)
+ // console.log('checkwishlist',productId,userId)
 
   try {
       // Check if the user has the product in their wishlist
       const wishlist = await WishList.findOne({ userId, "List.productId": productId });
-      console.log('checkwishlist*',wishlist)
+     // console.log('checkwishlist*',wishlist)
       if (wishlist) {
           return res.status(200).json({ success: true, message: 'Product is in wishlist' ,wishlist});
       } else {

@@ -183,18 +183,23 @@ exports.deleteCartByUserId = async (req, res, next) => {
 };
 exports.checkcart = async (req, res) => {
   const productId = req.body.productId;
-  const userId  = req.body.userId
-  try {
-      // Check if the user has the product in their wishlist
-      const cart = await Cart.findOne({ userId, "products.productId": productId });
+  const userId = req.body.userId;
+  console.log('checkCart', productId, userId);
 
-      if (cart) {
-          return res.status(200).json({ success: true, message: 'Product is in Cart' },cart);
-      } else {
-          return res.status(200).json({ success: false, message: 'Product is not in Cart' },cart);
-      }
+  try {
+    // Check if the user has the product in their cart
+    const cart = await Cart.findOne({ userId, "products.productId": productId });
+    console.log('checkCart*', cart);
+
+    if (cart) {
+      return res.status(200).json({ success: true, message: 'Product is in Cart' }); // Use 200 for success
+    } else {
+      return res.status(200).json({ success: false, message: 'Product is not in Cart' }); // Use 200 for valid but non-successful case
+    }
   } catch (error) {
-      return res.status(500).json({ success: false, message: 'Server error', error });
+    console.error('Error in checkcart:', error); // Log the error for debugging
+    return res.status(500).json({ success: false, message: 'Server error', error }); // 500 for server errors
   }
-}
+};
+
 
