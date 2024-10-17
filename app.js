@@ -7,11 +7,7 @@ let  cors = require('cors');
 //    methods: 'GET,POST,PUT,DELETE',
 //    credentials: true
 //  }));
-app.use(cors({
-   origin: 'https://e-commercebackend-6r5v.onrender.com/', // Your Angular app's URL
-   methods: 'GET,POST,PUT,DELETE',
-   credentials: true
- }));
+app.use(cors());
 app.use(express.json());
 let  morgan = require('morgan');
 let  bodyParser = require('body-parser');
