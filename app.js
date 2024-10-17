@@ -7,7 +7,11 @@ let  cors = require('cors');
 //    methods: 'GET,POST,PUT,DELETE',
 //    credentials: true
 //  }));
-app.use(cors());
+app.use(cors({
+   origin: 'https://e-commercebackend-6r5v.onrender.com/', // Your Angular app's URL
+   methods: 'GET,POST,PUT,DELETE',
+   credentials: true
+ }));
 app.use(express.json());
 let  morgan = require('morgan');
 let  bodyParser = require('body-parser');
@@ -25,8 +29,8 @@ let  cardcarouselRoutes = require('./api/routes/Cardcarousel')
 const connectDB = require('./db'); // Adjust the path to your db.js file
 let  mongoose = require('mongoose');
 // app.use(express.static((__dirname+'/views')));
-mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
-//connectDB(); // Connect to MongoDB
+//mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
+connectDB(); // Connect to MongoDB
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
