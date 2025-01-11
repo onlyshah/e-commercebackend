@@ -7,11 +7,17 @@ const carddata = require('../models/card')
 
 exports.getall= (req,res, next)=>{  // all product /category/ subcategory
 
+    const pageSize = +req.query.pageSize || 10; // Default page size of 10
+    const pageNumber = +req.query.page || 1;    // Default page number is 1
+
+    const filters = req.query;
     // const filters = req.query
    Product.find()
    .select('productname price _id productImage  productdescription displaycategory displaycategoryid brand features')
    .populate('CategoryId')
    .populate('SubCategoryId')
+   .skip((pageNumber - 1) * pageSize)   // Skip previous pages
+   .limit(pageSize)   
    .exec()
    .then(docs =>{
        const response={
