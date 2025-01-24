@@ -63,7 +63,7 @@ app.use('/wishlist', wishlistRoutes);
 app.use('/', carouselRoutes)
 app.use('/', cardcarouselRoutes)
 app.use('/', emailRoutes)
-app.use(authMiddleware); 
+//app.use(authMiddleware); 
 process.on('unhandledRejection', (reason, promise) => {
    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
    // Application specific logging, throwing an error, or other logic here
