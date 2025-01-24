@@ -10,6 +10,7 @@ let  cors = require('cors');
 app.use(cors({
    origin: 'https://e-commercebackend-6r5v.onrender.com/', // Your Angular app's URL
    methods: 'GET,POST,PUT,DELETE',
+   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
    credentials: true,
  }));
  //app.options('*', cors()); // Enable preflight requests for all routes
