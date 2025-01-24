@@ -146,7 +146,7 @@ exports.deletecartproduct = (req, res, next) => {
               message: 'Product removed successfully',
               request: {
                   type: 'DELETE',
-                  description: 'Delete product from wishlist',
+                  description: 'Delete product from cart',
                   url: `http://localhost:3000/cart/deletecartitem/${userId}/${productId}`,
                   params: { userId:userId , productId: productId }
          
@@ -154,7 +154,7 @@ exports.deletecartproduct = (req, res, next) => {
           });
       } else {
           res.status(404).json({
-              message: 'Product not found in wishlist or already removed'
+              message: 'Product not found in cart or already removed'
           });
       }
   })

@@ -10,8 +10,11 @@ let  cors = require('cors');
 app.use(cors({
    origin: 'https://e-commercebackend-6r5v.onrender.com/', // Your Angular app's URL
    methods: 'GET,POST,PUT,DELETE',
-   credentials: true
+   credentials: true,
+   origin: true,
  }));
+ app.options('*', cors()); // Enable preflight requests for all routes
+
 app.use(express.json());
 let  morgan = require('morgan');
 let  bodyParser = require('body-parser');
