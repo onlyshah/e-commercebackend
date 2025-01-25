@@ -7,8 +7,9 @@ let  cors = require('cors');
 //    methods: 'GET,POST,PUT,DELETE',
 //    credentials: true
 //  }));
+const allowedOrigins = ['http://localhost:4200', 'https://onlyshah.github.io/'];
 app.use(cors({
-   origin: 'https://e-commercebackend-6r5v.onrender.com/', // Your Angular app's URL
+   origin: allowedOrigins, // Your Angular app's URL
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
    allowedHeaders: ['Content-Type', 'Authorization'],
    credentials: true
