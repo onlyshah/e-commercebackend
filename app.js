@@ -7,7 +7,7 @@ let  cors = require('cors');
 //    methods: 'GET,POST,PUT,DELETE',
 //    credentials: true
 //  }));
-const allowedOrigins = ['http://localhost:4200', 'https://onlyshah.github.io/'];
+const allowedOrigins = ['http://localhost:4200', 'https://onlyshah.github.io'];
 app.use(cors({
    origin: allowedOrigins, // Your Angular app's URL
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
