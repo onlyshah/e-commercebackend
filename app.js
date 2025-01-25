@@ -63,11 +63,10 @@ app.use('/wishlist', wishlistRoutes);
 app.use('/', carouselRoutes);
 app.use('/', cardcarouselRoutes);
 app.use('/', emailRoutes);
-app.use((err, req, res, next) => {
-   console.error('Error:', err.message);
-   res.status(500).send('Something went wrong!');
+app.use((req, res, next) => {
+   console.log('CORS Middleware Applied:', req.headers.origin);
+   next();
  });
- 
 //app.use(authMiddleware); 
 process.on('unhandledRejection', (reason, promise) => {
    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
