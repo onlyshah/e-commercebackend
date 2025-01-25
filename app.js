@@ -9,9 +9,9 @@ let  cors = require('cors');
 //  }));
 app.use(cors({
    origin: 'https://e-commercebackend-6r5v.onrender.com/', // Your Angular app's URL
-   methods: 'GET,POST,PUT,DELETE',
-   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-   credentials: true,
+   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+   allowedHeaders: ['Content-Type', 'Authorization'],
+   credentials: true
  }));
  //app.options('*', cors()); // Enable preflight requests for all routes
 
@@ -60,9 +60,14 @@ app.use('/', SubcategoryRoutes);
 app.use('/cart', addtocartRoutes);
 app.use('/', comanApi);
 app.use('/wishlist', wishlistRoutes);
-app.use('/', carouselRoutes)
-app.use('/', cardcarouselRoutes)
-app.use('/', emailRoutes)
+app.use('/', carouselRoutes);
+app.use('/', cardcarouselRoutes);
+app.use('/', emailRoutes);
+app.use((err, req, res, next) => {
+   console.error('Error:', err.message);
+   res.status(500).send('Something went wrong!');
+ });
+ 
 //app.use(authMiddleware); 
 process.on('unhandledRejection', (reason, promise) => {
    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
