@@ -1,7 +1,7 @@
 let  express = require('express');
 let  app = express();
 app.use(express.json());
-const allowedOrigins = ['http://localhost:4200', 'https://onlyshah.github.io'];
+const allowedOrigins = ['http://localhost', 'https://onlyshah.github.io'];
 
 app.use(cors({
    origin: function (origin, callback) {
@@ -43,18 +43,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 app.use((req, res, next) => {
-   res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Header', '*');
-   
+   res.header('Access-Control-Allow-Origin', '*'); 
+   res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE');
+   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
    if (req.method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Method', 'PUT,POST,PATCH,GET,DELETE');
-      return res.status(200).json({})
+      return res.status(200).json({});
    }
+
    res.header('Content-Type', 'application/json');
-   req.setTimeout(60000); 
+   req.setTimeout(60000); // Set timeout of 60 seconds
    next();
 });
+
  const authMiddleware = require('./api/middleware/auth-check')
 app.use('/', productRoutes);
 app.use('/order', orderRoutes);
