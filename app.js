@@ -2,7 +2,7 @@ let  express = require('express');
 let  app = express();
 app.use(express.json());
 const allowedOrigins = ['http://localhost', 'https://onlyshah.github.io'];
-
+const cors = require('cors')
 app.use(cors({
    origin: function (origin, callback) {
        if (!origin || allowedOrigins.includes(origin)) {
