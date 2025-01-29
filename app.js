@@ -1,20 +1,23 @@
 let  express = require('express');
 let  app = express();
 app.use(express.json());
-let  cors = require('cors');
-// app.use(cors({
-//    origin: 'http://localhost:4200', // Your Angular app's URL
-//    methods: 'GET,POST,PUT,DELETE',
-//    credentials: true
-//  }));
 const allowedOrigins = ['http://localhost:4200', 'https://onlyshah.github.io'];
+
 app.use(cors({
-   origin: allowedOrigins, // Your Angular app's URL
+   origin: function (origin, callback) {
+       if (!origin || allowedOrigins.includes(origin)) {
+           callback(null, true);
+       } else {
+           callback(new Error('CORS policy does not allow this origin'));
+       }
+   },
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
    allowedHeaders: ['Content-Type', 'Authorization'],
    credentials: true
- }));
- app.options('*', cors()); // Enable preflight requests for all routes
+}));
+
+app.options('*', cors()); // Enable CORS preflight for all routes
+
 
 app.use(express.json());
 let  morgan = require('morgan');
