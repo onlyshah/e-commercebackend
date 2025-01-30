@@ -1,62 +1,45 @@
-let  express = require('express');
-let  app = express();
-app.use(express.json());
-const allowedOrigins = ['http://localhost', 'https://onlyshah.github.io'];
-const cors = require('cors')
-app.use(cors({
-   origin: function (origin, callback) {
-       if (!origin || allowedOrigins.includes(origin)) {
-           callback(null, true);
-       } else {
-           callback(new Error('CORS policy does not allow this origin'));
-       }
-   },
-   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-   allowedHeaders: ['Content-Type', 'Authorization'],
-   credentials: true
-}));
-
-app.options('*', cors()); // Enable CORS preflight for all routes
-
-
-app.use(express.json());
-let  morgan = require('morgan');
-let  bodyParser = require('body-parser');
-let  productRoutes = require('./api/routes/Product');
-let  orderRoutes = require('./api/routes/order');
-let  userRoutes = require('./api/routes/user');
-let  categoryRoutes = require('./api/routes/Category');
-let  SubcategoryRoutes = require('./api/routes/SubCategory');
-let  addtocartRoutes = require('./api/routes/addtoCart');
-let  comanApi = require('./api/routes/ComanApi');
-let  wishlistRoutes = require('./api/routes/Wishlist');
-let  carouselRoutes = require('./api/routes/carousel')
-let  emailRoutes = require('./api/routes/email')
-let  cardcarouselRoutes = require('./api/routes/Cardcarousel')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const connectDB = require('./db'); // Adjust the path to your db.js file
-let  mongoose = require('mongoose');
-// app.use(express.static((__dirname+'/views')));
-//mongoose.connect('mongodb://127.0.0.1:27017/nodeDemo');
-connectDB(); // Connect to MongoDB
+const mongoose = require('mongoose');
+
+// Middleware
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.json());
+const allowedOrigins = ['http://localhost:4200','http://localhost:8100'];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('CORS policy does not allow this origin'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}))
+
+// Routes
+const productRoutes = require('./api/routes/Product');
+const orderRoutes = require('./api/routes/order');
+const userRoutes = require('./api/routes/user');
+const categoryRoutes = require('./api/routes/Category');
+const SubcategoryRoutes = require('./api/routes/SubCategory');
+const addtocartRoutes = require('./api/routes/addtoCart');
+const comanApi = require('./api/routes/ComanApi');
+const wishlistRoutes = require('./api/routes/Wishlist');
+const carouselRoutes = require('./api/routes/carousel');
+const emailRoutes = require('./api/routes/email');
+const cardcarouselRoutes = require('./api/routes/Cardcarousel');
+
 app.use('/uploads', express.static('uploads'));
-app.use((req, res, next) => {
-   res.header('Access-Control-Allow-Origin', '*'); 
-   res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE');
-   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-   if (req.method === 'OPTIONS') {
-      return res.status(200).json({});
-   }
-
-   res.header('Content-Type', 'application/json');
-   req.setTimeout(60000); // Set timeout of 60 seconds
-   next();
-});
-
- const authMiddleware = require('./api/middleware/auth-check')
 app.use('/', productRoutes);
 app.use('/order', orderRoutes);
 app.use('/', userRoutes);
@@ -68,13 +51,19 @@ app.use('/wishlist', wishlistRoutes);
 app.use('/', carouselRoutes);
 app.use('/', cardcarouselRoutes);
 app.use('/', emailRoutes);
-app.use((req, res, next) => {
-   console.log('CORS Middleware Applied:', req.headers.origin);
-   next();
- });
-//app.use(authMiddleware); 
+
+// Error handling for unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
-   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-   // Application specific logging, throwing an error, or other logic here
- });
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+// Connect to MongoDB
+connectDB();
+
+// Debugging middleware
+app.use((req, res, next) => {
+  console.log('CORS Middleware Applied:', req.headers.origin);
+  next();
+});
+
 module.exports = app;
