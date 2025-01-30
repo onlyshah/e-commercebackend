@@ -11,7 +11,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
-const allowedOrigins = ['http://localhost:4200','http://localhost:8100'];
+const allowedOrigins = ['http://localhost:4200','http://localhost:8100',
+   'capacitor://localhost',  // For Capacitor apps
+   'ionic://localhost',      // For Ionic apps
+   'https://onlyshah.github.io'
+];
 
 app.use(cors({
     origin: function (origin, callback) {
